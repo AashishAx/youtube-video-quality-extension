@@ -9,8 +9,8 @@ chrome.runtime.sendMessage({todo: "showPageAction"});
 //listens to update in URL from background script
 //if url changes then call function to set the video quality
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    //if (request.todo === 'change')
-        //initiate();
+    if (request.todo === 'change')
+        initiate();
 });
 
 function initiate() {

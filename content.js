@@ -14,17 +14,17 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 function initiate() {
-    
+    console.log('initiating...');
     if(document.querySelector('.ytp-button.ytp-settings-button')) {
         var button = $('.ytp-button.ytp-settings-button');
         button.trigger('click');
         //console.log(button);
         var option = $('.ytp-settings-menu .ytp-menuitem').last();
-        option.trigger('click');
-        console.log(option);
-        var quality = $('.ytp-settings-menu .ytp-quality-menu .ytp-menuitem').first();
-        quality.trigger('click');
-        console.log(quality);
+        if(option.find('.ytp-menuitem-label').text() == 'Quality') {
+            option.trigger('click');
+            var quality = $('.ytp-settings-menu .ytp-quality-menu .ytp-menuitem').first();
+            quality.trigger('click');
+        }
     }
     else {
         setTimeout(initiate, 2000);

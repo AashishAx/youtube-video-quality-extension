@@ -35,3 +35,9 @@ function initiate() {
 $(document).ready(function() {
     setTimeout(initiate, 2000);
 });
+
+$(document).on('keyup', function(e) {
+    if(e.which == 81) {
+        initiate();
+    }
+})

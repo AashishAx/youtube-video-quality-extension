@@ -1,19 +1,18 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Auto HD Extension",
-    "version": "1.0",
+    "version": "1.1",
     "description": "Automatically set the Quality of YouTube videos to max",
     "icons": {
         "128": "icon_128.png"
     },
-    "page_action": {
+    "action": {
         "default_icon": "icon_128.png",
         "default_popup": "popup.html",
         "default_title": "May the fource be with you"
     },
     "background": {
-        "scripts": ["background.js"],
-        "persistent": false
+        "service_worker": "background.js"
     },
     "content_scripts": [
         {
@@ -23,7 +22,9 @@
         }
     ],
     "permissions": [
-        "https://www.youtube.com/*"
+        "storage"
     ],
-    "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com; object-src 'self'"
+    "host_permissions": [
+        "https://www.youtube.com/*"
+    ]
 }

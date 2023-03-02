@@ -19,12 +19,14 @@ function initiate() {
         var button = $('.ytp-button.ytp-settings-button');
         button.trigger('click');
         //console.log(button);
-        var option = $('.ytp-settings-menu .ytp-menuitem').last();
-        if(option.find('.ytp-menuitem-label').text() == 'Quality') {
-            option.trigger('click');
-            var quality = $('.ytp-settings-menu .ytp-quality-menu .ytp-menuitem').first();
-            quality.trigger('click');
-        }
+        var option = $('.ytp-settings-menu .ytp-menuitem');
+        option.each(function() {
+            if($(this).find('.ytp-menuitem-label').text() == 'Quality') {
+                $(this).trigger('click');
+                var quality = $('.ytp-settings-menu .ytp-quality-menu .ytp-menuitem').first();
+                quality.trigger('click');
+            }
+        });
     }
     else {
         setTimeout(initiate, 2000);

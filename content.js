@@ -14,7 +14,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 function initiate() {
-    console.log('initiating...');
     if(document.querySelector('.ytp-button.ytp-settings-button')) {
         var button = $('.ytp-button.ytp-settings-button');
         button.trigger('click');
@@ -39,7 +38,6 @@ function getVideoElement() {
 }
 
 function reqPiP() {
-    console.log('request picture in picture...');
     let video = getVideoElement();
     if (document.pictureInPictureElement) {
         document.exitPictureInPicture();
@@ -74,7 +72,6 @@ $(document).ready(function() {
 });
 
 $(document).on('keyup', function(e) {
-    console.log(e.which);
     switch (e.which) {
         case 81: //Q for quality
             initiate();

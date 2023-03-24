@@ -34,12 +34,64 @@ function initiate() {
    
 }
 
+function getVideoElement() {
+    return $('video')[0];
+}
+
+function reqPiP() {
+    console.log('request picture in picture...');
+    let video = getVideoElement();
+    if (document.pictureInPictureElement) {
+        document.exitPictureInPicture();
+    } else if (document.pictureInPictureEnabled) {
+        video.requestPictureInPicture();
+    }
+}
+
+let speed = 1.0;
+function setVideoSpeed(faster) {
+    let video = getVideoElement();
+    if(faster) {
+        if(speed < 2.0) {
+            speed += 0.25;
+        }
+    } else {
+        if(speed > 0.25) {
+            speed -= 0.25
+        }
+    }
+    video.playbackRate = speed;
+}
+
+function resetVideoSpeed() {
+    let video = getVideoElement();
+    speed = 1.0;
+    video.playbackRate = speed;
+}
+
 $(document).ready(function() {
     setTimeout(initiate, 2000);
 });
 
 $(document).on('keyup', function(e) {
-    if(e.which == 81) {
-        initiate();
+    console.log(e.which);
+    switch (e.which) {
+        case 81: //Q for quality
+            initiate();
+            break;
+        case 87: //W for picture in picture
+            reqPiP();
+            break;
+        case 82:
+            resetVideoSpeed();
+            break;
+        case 188:
+            setVideoSpeed(false);
+            break;
+        case 190:
+            setVideoSpeed(true);
+            break;
+        default:
+            break;
     }
-})
+});
